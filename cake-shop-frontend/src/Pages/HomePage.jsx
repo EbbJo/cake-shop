@@ -6,7 +6,7 @@ function HomePage() {
     return (
         <>
             <div>
-                <div id="product-section" className="flex flex-wrap justify-center py-5">
+                <div id="product-section" className="flex flex-wrap justify-self-start py-5">
                     {products.map(product => (
                         <ProductCard key={product.id} product={product} />
                     ))}
