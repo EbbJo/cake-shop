@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../Components/ProductCard";
 import products from "../data/products.js"
-import { getAllCakes } from "../Services/api.js";
+import { getAllCakes } from "../services/api.js";
 import { useCakeContext } from "../contexts/CakeContext.jsx";
 
 function HomePage() {
