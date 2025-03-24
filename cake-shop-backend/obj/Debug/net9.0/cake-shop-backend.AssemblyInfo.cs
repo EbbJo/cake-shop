@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("cake-shop-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c285062907fcef8da599bc2a9446f458180bc69")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f10bc57a4b0730d302bcd3fb62f9d66a3e6932b0")]
 [assembly: System.Reflection.AssemblyProductAttribute("cake-shop-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("cake-shop-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

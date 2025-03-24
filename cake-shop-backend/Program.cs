@@ -1,4 +1,6 @@
 using cake_shop_backend;
+using cake_shop_backend.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,10 @@ builder.Services.AddCors(options => {
             .AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader());
+});
+
+builder.Services.AddDbContext<CakeDbContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
 var app = builder.Build();
