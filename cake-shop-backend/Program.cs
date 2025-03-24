@@ -1,3 +1,5 @@
+using cake_shop_backend;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -20,4 +22,7 @@ app.UseCors("AllowCakeApp");
 if (app.Environment.IsDevelopment()) {
     app.MapOpenApi();
 }
+
+app.MapEndpoints();
+
 app.Run();
