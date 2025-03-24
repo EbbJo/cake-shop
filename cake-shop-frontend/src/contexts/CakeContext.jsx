@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect, Children, use } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 import { getAllCakes, getCakeByID, addCake, updateCake, deleteCake } from "../services/api";
 
 const CakeContext = createContext();
@@ -7,6 +7,7 @@ export const useCakeContext = () =>  useContext(CakeContext);
 
 export const CakeProvider = ({children}) => {
     const [cakeList, setCakeList] = useState([]);
+    const [cart, setCart] = useState([])
 
     useEffect(() => {
         const fetchAllCakes = async () => {
@@ -17,8 +18,21 @@ export const CakeProvider = ({children}) => {
         fetchAllCakes();
     }, []);
 
+    const addToCart = async (cake) => {
+        setCart((prev) => [...prev, cake]);
+        console.info("Added To Cart")
+    }
+
+    const removeFromCart = async (cakeId) => {
+        setCart((prev) => prev.filter((cake) => cake.id !== cakeId))
+        console.info("Removed From Cart")
+    }
+
     const value = {
-        cakeList
+        cakeList,
+        cart,
+        addToCart,
+        removeFromCart
     }
 
     return (
