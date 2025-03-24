@@ -27,7 +27,7 @@ public static class Endpoints {
         return TypedResults.Ok(cars);
     }
 
-    static async Task<IResult> GetCakeById(CakeDbContext db, [FromRoute] int id) {
+    private static async Task<IResult> GetCakeById(CakeDbContext db, [FromRoute] int id) {
         var cake = await db.Cakes.FindAsync(id);
         
         if (cake is null) {
@@ -37,14 +37,14 @@ public static class Endpoints {
         return TypedResults.Ok(cake);
     }
 
-    static async Task<IResult> AddCake(CakeDbContext db, [FromBody] Cake cake) {
+    private static async Task<IResult> AddCake(CakeDbContext db, [FromBody] Cake cake) {
          await db.Cakes.AddAsync(cake);
          await db.SaveChangesAsync();
 
          return TypedResults.Created($"/{cake.Id}", cake);
     }
 
-    static async Task<IResult> UpdateCake(CakeDbContext db, [FromBody] Cake cake) {
+    private static async Task<IResult> UpdateCake(CakeDbContext db, [FromBody] Cake cake) {
         var cakeToUpdate = await db.Cakes.FindAsync(cake.Id);
 
         if (cakeToUpdate is null) {
@@ -58,7 +58,7 @@ public static class Endpoints {
         return TypedResults.Ok(cakeToUpdate);
     }
 
-    static async Task<IResult> DeleteCake(CakeDbContext db, [FromRoute] int id) {
+    private static async Task<IResult> DeleteCake(CakeDbContext db, [FromRoute] int id) {
         var cake = await db.Cakes.FindAsync(id);
         if (cake is null) {
             return TypedResults.NotFound();
