@@ -24,5 +24,6 @@ if (app.Environment.IsDevelopment()) {
 }
 
 app.MapEndpoints();
+app.EnsurePopulated();
 
 app.Run();
