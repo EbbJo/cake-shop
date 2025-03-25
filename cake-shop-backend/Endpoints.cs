@@ -35,7 +35,7 @@ public static class Endpoints {
     private static async Task<IResult> GetCakesSearch(CakeDbContext db,
         [FromRoute] int pagenr,
         [FromRoute] int pageamt,
-        [FromQuery] string query) {
+        string? query = null) {
         
         var cars = await db.Cakes.ToListAsync();
 

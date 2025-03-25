@@ -39,6 +39,26 @@ export const getAllCakes = async () => {
     }
 }
 
+export const getCakesSearched = async (pageNr, pageAmt, query = "") => {
+    try {
+        let str = `${BASE_URL}/Page-${pageNr}_AmtPerPage-${pageAmt}`;
+        if (query.length > 0) {
+            str += `?query=${query}`;
+        }
+
+        const response = await fetch(str, {
+            method: 'GET'
+        });
+
+        if (!response.ok) throw new Error(response.status);
+
+        return await response.json();
+    } catch (e) {
+        console.log("Error getting cakes: "+e);
+        return [];
+    }
+}
+
 /**
  * Get a cake specified by the id.
  * @param {number} id
