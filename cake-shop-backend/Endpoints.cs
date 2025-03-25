@@ -2,6 +2,7 @@
 using cake_shop_backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 
 namespace cake_shop_backend;
 
@@ -11,9 +12,9 @@ public static class Endpoints {
         
         endpoints.MapGet("/", GetCakes).WithSummary("Gets all cakes.");
         
-        endpoints.MapGet("/Page-{pagenr}_AmtPerPage-{pageamt}", GetCakesPaginated)
+        endpoints.MapGet("/Page-{pagenr}_AmtPerPage-{pageamt}_Search={query}", GetCakesSearch)
             .WithSummary("Get all cakes within a range, starting from 'Page', and 'AmtPerPage' being the amount of elements per page.");
-        
+
         endpoints.MapGet("/{id}", GetCakeById).WithSummary("Gets a cake by id.");
         
         endpoints.MapPost("/", AddCake)
@@ -31,11 +32,20 @@ public static class Endpoints {
         return TypedResults.Ok(cars);
     }
 
-    private static async Task<IResult> GetCakesPaginated(CakeDbContext db,
+    private static async Task<IResult> GetCakesSearch(CakeDbContext db,
         [FromRoute] int pagenr,
-        [FromRoute] int pageamt) {
+        [FromRoute] int pageamt,
+        [FromRoute] string query) {
         
         var cars = await db.Cakes.ToListAsync();
+
+        if (!string.IsNullOrEmpty(query)) {
+            cars = cars.Where(c => c.Name.Contains(query)).ToList();
+        }
+
+        if (cars.Count == 0) {
+            return TypedResults.NoContent();
+        }
         
         int startingElem = pagenr * pageamt;
 
