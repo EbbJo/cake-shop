@@ -1,29 +1,35 @@
 
 
-function AboutPage() {
+function AboutPage() {//sx:columns-1 sx:gap-2 sm:columns-2 sm:gap-4 md:columns-3 md:gap-6 m-4
     return (
         <div>
-            <h1>
-                About us
-            </h1>
-            <div class="flex">
-                {Person({name:"ebbe",age:"4",profession:"datamatiker",description:"The FitnessGram Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues..."})}
-                {Person({name:"simon",age:"5",profession:"datamatiker",description:"No cock like horse cock."})}
-                {Person({name:"seb",age:"1",profession:"datamatiker",description:"Any female born after 1983 can't cook, all they know is McDonalds, charge their phone, twerk, be bisexual, eat hot chip and lie."})}
+            <div class="m-4">
+                <h1 class="text-xl  font-bold mb-0">
+                    About us
+                </h1>
+                <div class="mb-4 text-[17px]/6">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+            </div>
+            <div class="md:flex">
+                {Person({ name: "Ebbe Johansen", age: "4", profession: "datamatiker", imgSrc: "https://placehold.co/200x150", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." })}
+                {Person({ name: "Simon Knudsen", age: "5", profession: "datamatiker", imgSrc: "https://placehold.co/200x200", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." })}
+                {Person({ name: "Sebastian Maul", age: "22", profession: "datamatiker", imgSrc: "https://placehold.co/200x150", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." })}
 
             </div>
         </div>
     )
 }
 
-function Person({name, age, profession, description}) {
+function Person({ name, age, profession, imgSrc, description }) {
     return (
-        <div class="bg-blue-200 p-2 m-2 overflow-hidden rounded-xl shadow-md">
-            <div class="font-bold">
+        <div class="bg-amber-100 rounded-xl shadow-md p-3 min-h-100 m-4 md:flex-1">
+            <img src={imgSrc} class="float-right rounded-xl ml-2 mb-2 md:scale-100 scale-120" alt={name} />
+            <div class="text-xl  font-bold mb-0 flex-none">
                 {name}, {age}
             </div>
-            <div class="text-gray-700 italic">{profession}</div>
-            <div>{description}</div>
+            <div class="text-gray-600 italic mb-2 text-lg">{profession}</div>
+            <div class="mb-4 text-[17px]/6">{description}</div>
         </div>
     )
 }
