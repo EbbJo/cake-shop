@@ -43,7 +43,7 @@ function HomePage() {
                 </div>
                 </div>
             <div>
-                <div id="product-section" className="flex flex-wrap justify-self-start">
+                <div id="product-section" className="flex flex-wrap justify-center">
                     {cakeList.map(product => (
                         <ProductCard key={product.id} product={product} />
                     ))}
