@@ -16,7 +16,7 @@ export const addCake = async (cake) => {
 
         return await response.json();
     } catch (e) {
-        console.log("Error creating cake: "+e);
+        console.error("Error creating cake: "+e);
         return null;
     }
 }
@@ -34,7 +34,7 @@ export const getAllCakes = async () => {
 
         return await response.json();
     } catch (e) {
-        console.log("Error getting cakes: "+e);
+        console.error("Error getting cakes: "+e);
         return [];
     }
 }
@@ -54,7 +54,7 @@ export const getCakesSearched = async (pageNr, pageAmt, query = "") => {
 
         return await response.json();
     } catch (e) {
-        console.log("Error getting cakes: "+e);
+        console.error("Error getting cakes: "+e);
         return [];
     }
 }
@@ -73,7 +73,7 @@ export const getCakeByID = async (id) => {
 
         return await response.json();
     } catch (e) {
-        console.log("Error getting cake: "+e);
+        console.error("Error getting cake: "+e);
         return null;
     }
 }
@@ -94,7 +94,7 @@ export const updateCake = async (cake) => {
 
         return await response.json();
     } catch (e) {
-        console.log("Error updating cake: "+e);
+        console.error("Error updating cake: "+e);
         return null;
     }
 }
@@ -113,7 +113,7 @@ export const deleteCake = async (id) => {
 
         return await response.json();
     } catch (e) {
-        console.log("Error deleting cake: "+e);
+        console.error("Error deleting cake: "+e);
         return null;
     }
 }
