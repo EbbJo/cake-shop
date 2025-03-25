@@ -45,7 +45,7 @@ public static class Endpoints {
         var cars = await db.Cakes.ToListAsync();
 
         if (!string.IsNullOrEmpty(query)) {
-            cars = cars.Where(c => c.Name.Contains(query)).ToList();
+            cars = cars.Where(c => c.Name.Contains(query, StringComparison.InvariantCultureIgnoreCase)).ToList();
         }
 
         if (cars.Count == 0) {

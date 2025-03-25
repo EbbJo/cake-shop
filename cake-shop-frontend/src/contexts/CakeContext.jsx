@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { getAllCakes, getCakeByID, addCake, updateCake, deleteCake } from "../services/api";
+import { getAllCakes, getCakesSearched, getCakeByID, addCake, updateCake, deleteCake } from "../services/api";
 
 const CakeContext = createContext();
 
@@ -28,9 +28,16 @@ export const CakeProvider = ({children}) => {
         console.info("Removed From Cart")
     }
 
+    const filterCakes = async (pageNr, pageAmt, query = "") => {
+        const arr = await getCakesSearched(pageNr, pageAmt, query);
+
+        setCakeList(arr);
+    }
+
     const value = {
         cakeList,
         cart,
+        filterCakes,
         addToCart,
         removeFromCart
     }

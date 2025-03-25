@@ -41,7 +41,7 @@ export const getAllCakes = async () => {
 
 export const getCakesSearched = async (pageNr, pageAmt, query = "") => {
     try {
-        let str = `${BASE_URL}/Page-${pageNr}_AmtPerPage-${pageAmt}`;
+        let str = `${BASE_URL}/cakes/Page-${pageNr}_AmtPerPage-${pageAmt}`;
         if (query.length > 0) {
             str += `?query=${query}`;
         }
