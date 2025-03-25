@@ -4776,19 +4776,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\CraZi\\.nuget\\packages\\": {}
+    "C:\\Users\\simon\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CraZi\\OneDrive\\Dokumenter\\GitHub\\cake-shop\\cake-shop-backend\\cake-shop-backend.csproj",
+      "projectUniqueName": "C:\\Users\\simon\\OneDrive\\Skrivebord\\cake-shop\\cake-shop-backend\\cake-shop-backend.csproj",
       "projectName": "cake-shop-backend",
-      "projectPath": "C:\\Users\\CraZi\\OneDrive\\Dokumenter\\GitHub\\cake-shop\\cake-shop-backend\\cake-shop-backend.csproj",
-      "packagesPath": "C:\\Users\\CraZi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CraZi\\OneDrive\\Dokumenter\\GitHub\\cake-shop\\cake-shop-backend\\obj\\",
+      "projectPath": "C:\\Users\\simon\\OneDrive\\Skrivebord\\cake-shop\\cake-shop-backend\\cake-shop-backend.csproj",
+      "packagesPath": "C:\\Users\\simon\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\simon\\OneDrive\\Skrivebord\\cake-shop\\cake-shop-backend\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\CraZi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\simon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4796,7 +4801,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4814,8 +4818,7 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.200"
+      }
     },
     "frameworks": {
       "net9.0": {
@@ -4865,7 +4868,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.103/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
