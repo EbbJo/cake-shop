@@ -10,6 +10,10 @@ public static class Endpoints {
         var endpoints = app.MapGroup("/api/cakes");
         
         endpoints.MapGet("/", GetCakes).WithSummary("Gets all cakes.");
+        
+        endpoints.MapGet("/Page-{pagenr}_AmtPerPage-{pageamt}", GetCakesPaginated)
+            .WithSummary("Get all cakes within a range, starting from 'Page', and 'AmtPerPage' being the amount of elements per page.");
+        
         endpoints.MapGet("/{id}", GetCakeById).WithSummary("Gets a cake by id.");
         
         endpoints.MapPost("/", AddCake)
@@ -24,6 +28,23 @@ public static class Endpoints {
 
     private static async Task<IResult> GetCakes(CakeDbContext db) {
         var cars = await db.Cakes.ToListAsync();
+        return TypedResults.Ok(cars);
+    }
+
+    private static async Task<IResult> GetCakesPaginated(CakeDbContext db,
+        [FromRoute] int pagenr,
+        [FromRoute] int pageamt) {
+        
+        var cars = await db.Cakes.ToListAsync();
+        
+        int startingElem = pagenr * pageamt;
+
+        if (startingElem > cars.Count) {
+            return TypedResults.NoContent();
+        }
+        
+        cars = cars.Skip(startingElem).Take(pageamt).ToList();
+        
         return TypedResults.Ok(cars);
     }
 
