@@ -12,7 +12,7 @@ public static class Endpoints {
         
         endpoints.MapGet("/", GetCakes).WithSummary("Gets all cakes.");
         
-        endpoints.MapGet("/Page-{pagenr}_AmtPerPage-{pageamt}_Search={query}", GetCakesSearch)
+        endpoints.MapGet("/Page-{pagenr}_AmtPerPage-{pageamt}", GetCakesSearch)
             .WithSummary("Get all cakes within a range, starting from 'Page', and 'AmtPerPage' being the amount of elements per page.");
 
         endpoints.MapGet("/{id}", GetCakeById).WithSummary("Gets a cake by id.");
@@ -35,7 +35,7 @@ public static class Endpoints {
     private static async Task<IResult> GetCakesSearch(CakeDbContext db,
         [FromRoute] int pagenr,
         [FromRoute] int pageamt,
-        [FromRoute] string query) {
+        [FromQuery] string query) {
         
         var cars = await db.Cakes.ToListAsync();
 

@@ -1,6 +1,9 @@
+#define USESWAGGER
+
 using cake_shop_backend;
 using cake_shop_backend.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,11 +19,28 @@ builder.Services.AddCors(options => {
             .AllowAnyHeader());
 });
 
+#if USESWAGGER
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c => {
+    c.SwaggerDoc("v1",
+        new OpenApiInfo() { Title = "Cake API", Description = "Keep Track of your tasks", Version = "v1" });
+});
+#endif
+
 builder.Services.AddDbContext<CakeDbContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
 var app = builder.Build();
+
+#if USESWAGGER
+if (app.Environment.IsDevelopment()) {
+    app.UseSwagger();
+    app.UseSwaggerUI(c => {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cake API V1");
+    });
+}
+#endif
 
 app.UseCors("AllowCakeApp");
 
