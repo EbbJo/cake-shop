@@ -7,7 +7,7 @@ export const useCakeContext = () =>  useContext(CakeContext);
 
 export const CakeProvider = ({children}) => {
     const [cakeList, setCakeList] = useState([]);
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState([]);
 
     useEffect(() => {
         const fetchAllCakes = async () => {

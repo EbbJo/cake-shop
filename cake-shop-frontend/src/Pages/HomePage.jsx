@@ -1,7 +1,7 @@
 import ProductCard from "../Components/ProductCard";
 import { useCakeContext } from "../contexts/CakeContext.jsx";
 import { getCakesSearched } from "../services/api.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function HomePage() {
     const AMT_PER_PAGE = 10;
@@ -12,6 +12,10 @@ function HomePage() {
 
     const [pageNr, setPageNr] = useState(0);
 
+    useEffect(() => {
+        filterCakes(pageNr, AMT_PER_PAGE, seachQuery);
+    }, [pageNr])
+
     const onSearchChanged = async (e) => {
         setSearchQuery(e.target.value);
     }
@@ -19,6 +23,16 @@ function HomePage() {
     const filterResults = async () => {
         filterCakes(pageNr, AMT_PER_PAGE, seachQuery);
         setPageNr(0);
+    }
+
+    const increasePageNr = () => {
+        setPageNr(pageNr+1);
+    }
+
+    const decreasePageNr = () => {
+        if (pageNr > 0) {
+            setPageNr(pageNr-1);
+        }
     }
 
     return (
@@ -41,7 +55,18 @@ function HomePage() {
                     Search
                     </button> 
                 </div>
-                </div>
+            </div>
+            <div className="flex justify-center">
+                <button type="button" className="top-1 right-1 flex items-center rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                onClick={decreasePageNr}>
+                    &lt; Prev
+                </button>
+                <label htmlFor="pageNr" id="pageNrLabel" className="mx-3">{pageNr+1}</label>
+                <button type="button" className="top-1 right-1 flex items-center rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                onClick={increasePageNr}>
+                    Next &gt;
+                </button>
+            </div>
             <div>
                 <div id="product-section" className="flex flex-wrap justify-self-start">
                     {cakeList.map(product => (
