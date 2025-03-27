@@ -58,7 +58,7 @@ function AboutPage() {
 function PersonCard({ name, age, profession, imgSrc, description }) {
     return (
         <div class="bg-amber-100 rounded-xl shadow-md p-3 min-h-100 m-4 md:flex-1">
-            <img src={imgSrc} class="float-right rounded-xl ml-2 mb-2 md:scale-100 scale-120" alt={name} />
+            <img src={imgSrc} class="float-right rounded-xl md:ml-2 md:mb-2 md:mr-0 md:mt-0 md:scale-100 scale-120 m-6" alt={name} />
             <div class="text-xl  font-bold mb-0 flex-none">
                 {name}, {age}
             </div>
