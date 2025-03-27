@@ -1,13 +1,7 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using cake_shop_backend.Data;
+﻿using cake_shop_backend.Data;
 using cake_shop_backend.Models;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 
 namespace cake_shop_backend;
 
@@ -42,29 +36,34 @@ public static class Endpoints {
         [FromRoute] int pageamt,
         string? query = null) {
         
+        //Get all cakes
         var cakes = await db.Cakes.ToListAsync();
 
+        //If query is provided, filter using it.
         if (!string.IsNullOrEmpty(query)) {
             cakes = cakes.Where(
                 c => c.Name.Contains(query, StringComparison.InvariantCultureIgnoreCase)).ToList();
         }
-
+        
         if (cakes.Count == 0) {
             return TypedResults.NoContent();
         }
         
+        //Get index of starting element
         int startingElem = pagenr * pageamt;
 
+        //Check if starting element is past end of list
         if (startingElem > cakes.Count) {
             return TypedResults.NoContent();
         }
 
-        var pageQuery = new ProductPageQuery();
-
-        if (cakes.Count - startingElem <= pageamt) {
-            pageQuery.LastPage = true;
-        }
+        //Create query object
+        var pageQuery = new ProductPageQuery {
+            NumPages = (int)Math.Ceiling((double)cakes.Count / pageamt),
+            LastPage = cakes.Count - startingElem <= pageamt
+        };
         
+        //Take portion of elements to show
         cakes = cakes.Skip(startingElem).Take(pageamt).ToList();
 
         if (cakes.Count == 0) {

@@ -13,6 +13,7 @@ function HomePage() {
 
     useEffect(() => {
         filterCakes(pageNr, AMT_PER_PAGE, seachQuery);
+        console.log(cakeList);
     }, [pageNr])
 
     const onSearchChanged = async (e) => {
@@ -62,7 +63,7 @@ function HomePage() {
                 onClick={decreasePageNr}>
                     &lt; Prev
                 </button>
-                <label htmlFor="pageNr" id="pageNrLabel" className="mx-3">{pageNr+1}</label>
+                <label htmlFor="pageNr" id="pageNrLabel" className="mx-3">{pageNr+1}/{(cakeList.numPages == 0) ? 1 : cakeList.numPages}</label>
                 <button type="button" id="incPage" className={(cakeList.lastPage ? "invisible" : "visible")+" top-1 right-1 flex items-center rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"}
                 onClick={increasePageNr}>
                     Next &gt;

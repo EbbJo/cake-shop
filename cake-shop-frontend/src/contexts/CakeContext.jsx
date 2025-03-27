@@ -1,22 +1,13 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { getAllCakes, getCakesSearched, getCakeByID, addCake, updateCake, deleteCake } from "../services/api";
+import { emptyProductQuery, getAllCakes, getCakesSearched, getCakeByID, addCake, updateCake, deleteCake } from "../services/api";
 
 const CakeContext = createContext();
 
 export const useCakeContext = () =>  useContext(CakeContext);
 
 export const CakeProvider = ({children}) => {
-    const [cakeList, setCakeList] = useState({lastPage: false, cakes: []});
+    const [cakeList, setCakeList] = useState(emptyProductQuery());
     const [cart, setCart] = useState([]);
-
-    useEffect(() => {
-        const fetchAllCakes = async () => {
-            const data = await getAllCakes();
-            setCakeList({lastPage: false, cakes: data});
-        }
-
-        fetchAllCakes();
-    }, []);
 
     const addToCart = async (cake) => {
         setCart((prev) => [...prev, cake]);

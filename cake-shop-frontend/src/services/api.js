@@ -1,6 +1,19 @@
 const BASE_URL = `http://localhost:5050/api`;
 
 /**
+ * @returns Default value for a product list page with no elements and no pages.
+ */
+export const emptyProductQueryAsync = async () => {
+    return {lastPage: true, numPages: 0, cakes: []};
+}
+/**
+ * @returns Default value for a product list page with no elements and no pages.
+ */
+export const emptyProductQuery = () => {
+    return {lastPage: true, numPages: 0, cakes: []};
+}
+
+/**
  * Add a cake.
  * @param {object} cake
  */
@@ -55,7 +68,7 @@ export const getCakesSearched = async (pageNr, pageAmt, query = "") => {
         return await response.json();
     } catch (e) {
         console.error("Error getting cakes: "+e);
-        return {lastPage: true, cakes: []};
+        return await emptyProductQuery();
     }
 }
 
