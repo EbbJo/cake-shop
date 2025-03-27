@@ -17,7 +17,7 @@ public static class SeedData {
             context.Database.Migrate();
         }
 
-        if (!context.Cakes.Any()) {
+        if (!context.Cakes.Any()) { 
             AddSeedData(context);
         }
     }
