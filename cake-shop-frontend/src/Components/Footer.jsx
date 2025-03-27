@@ -4,8 +4,7 @@ function Footer() {
 
     return(
         <nav>
-            <div className="flex justify-between p-5 bg-linear-to-t
-             from-sky-500 to-indigo-500 text-white font-navbar font-bold">
+            <div className="flex justify-between p-5 bg-yellow-950 text-white font-navbar font-bold">
                 <div>
                     <Link to="/">Cake Shop</Link>
                 </div>
