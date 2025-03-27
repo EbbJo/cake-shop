@@ -59,6 +59,12 @@ function HomePage() {
                 </div>
             </div>
             <div className="flex items-center justify-center">
+                <label>Page:</label>
+            </div>
+            <div className="flex items-center justify-center">
+                <label>Page:</label>
+            </div>
+            <div className="flex items-center justify-center">
                 <button type="button" id="decPage" className={((pageNr == 0) ? "invisible" : "visible")+" flex items-center rounded bg-rose-600 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-rose-600 focus:shadow-none active:bg-rose-700 hover:bg-rose-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"}
                 onClick={decreasePageNr}>
                     &lt; Prev
