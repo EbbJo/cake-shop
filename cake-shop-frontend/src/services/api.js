@@ -55,7 +55,7 @@ export const getCakesSearched = async (pageNr, pageAmt, query = "") => {
         return await response.json();
     } catch (e) {
         console.error("Error getting cakes: "+e);
-        return [];
+        return {lastPage: true, cakes: []};
     }
 }
 
