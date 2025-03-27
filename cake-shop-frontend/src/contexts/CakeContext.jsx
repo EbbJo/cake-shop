@@ -6,13 +6,13 @@ const CakeContext = createContext();
 export const useCakeContext = () =>  useContext(CakeContext);
 
 export const CakeProvider = ({children}) => {
-    const [cakeList, setCakeList] = useState([]);
+    const [cakeList, setCakeList] = useState({lastPage: false, cakes: []});
     const [cart, setCart] = useState([]);
 
     useEffect(() => {
         const fetchAllCakes = async () => {
             const data = await getAllCakes();
-            setCakeList(data);
+            setCakeList({lastPage: false, cakes: data});
         }
 
         fetchAllCakes();
@@ -29,9 +29,9 @@ export const CakeProvider = ({children}) => {
     }
 
     const filterCakes = async (pageNr, pageAmt, query = "") => {
-        const arr = await getCakesSearched(pageNr, pageAmt, query);
+        const cakes = await getCakesSearched(pageNr, pageAmt, query);
 
-        setCakeList(arr);
+        setCakeList(cakes);
     }
 
     const value = {

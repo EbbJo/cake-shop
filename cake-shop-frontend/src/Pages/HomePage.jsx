@@ -26,7 +26,9 @@ function HomePage() {
     }
 
     const increasePageNr = () => {
-        setPageNr(pageNr+1);
+        if (!cakeList.lastPage) {
+            setPageNr(pageNr+1);
+        }
     }
 
     const decreasePageNr = () => {
@@ -69,7 +71,7 @@ function HomePage() {
             </div>
             <div>
                 <div id="product-section" className="flex flex-wrap justify-center">
-                    {cakeList.map(product => (
+                    {cakeList.cakes.map(product => (
                         <ProductCard key={product.id} product={product} />
                     ))}
                 </div>

@@ -33,8 +33,8 @@ public static class Endpoints {
     }
 
     private static async Task<IResult> GetCakes(CakeDbContext db) {
-        var cars = await db.Cakes.ToListAsync();
-        return TypedResults.Ok(cars);
+        var cakes = await db.Cakes.ToListAsync();
+        return TypedResults.Ok(cakes);
     }
 
     private static async Task<IResult> GetCakesSearch(CakeDbContext db,
@@ -42,25 +42,38 @@ public static class Endpoints {
         [FromRoute] int pageamt,
         string? query = null) {
         
-        var cars = await db.Cakes.ToListAsync();
+        var cakes = await db.Cakes.ToListAsync();
 
         if (!string.IsNullOrEmpty(query)) {
-            cars = cars.Where(c => c.Name.Contains(query, StringComparison.InvariantCultureIgnoreCase)).ToList();
+            cakes = cakes.Where(
+                c => c.Name.Contains(query, StringComparison.InvariantCultureIgnoreCase)).ToList();
         }
 
-        if (cars.Count == 0) {
+        if (cakes.Count == 0) {
             return TypedResults.NoContent();
         }
         
         int startingElem = pagenr * pageamt;
 
-        if (startingElem > cars.Count) {
+        if (startingElem > cakes.Count) {
+            return TypedResults.NoContent();
+        }
+
+        var pageQuery = new ProductPageQuery();
+
+        if (cakes.Count - startingElem <= pageamt) {
+            pageQuery.LastPage = true;
+        }
+        
+        cakes = cakes.Skip(startingElem).Take(pageamt).ToList();
+
+        if (cakes.Count == 0) {
             return TypedResults.NoContent();
         }
         
-        cars = cars.Skip(startingElem).Take(pageamt).ToList();
-        
-        return TypedResults.Ok(cars);
+        pageQuery.Cakes = cakes;
+
+        return TypedResults.Ok(pageQuery);
     }
 
     private static async Task<IResult> GetCakeById(CakeDbContext db, [FromRoute] int id) {
