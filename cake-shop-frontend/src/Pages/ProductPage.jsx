@@ -8,7 +8,7 @@ function ProductPage() {
 
     const { id } = useParams();
 
-    const [product, setProduct] = useState({name: "", price:"", description: ""})
+    const [product, setProduct] = useState(null)
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -22,6 +22,12 @@ function ProductPage() {
 
         fetchProduct();
     }, [id])
+
+    if (product == null) {
+        return <div>
+            Product does not exist!
+        </div>
+    }
 
     return (
         <div>
