@@ -115,9 +115,9 @@ public static class SeedData {
                 Description = "Chocolate cake with crushed cookies and vanilla frosting."
             },
             new Cake {
-                Name = "Pumpkin Spice",
-                Price = 16.29m,
-                Description = "Pumpkin-flavored cake with cinnamon cream cheese frosting."
+                Name = "Monkey",
+                Price = 1000000.00m,
+                Description = "Uhh ohhh, Stinkyyy"
             },
             new Cake {
                 Name = "Honey Lavender",
