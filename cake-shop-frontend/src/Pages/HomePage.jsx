@@ -43,12 +43,12 @@ function HomePage() {
                 <div className="relative flex justify-center my-10">
                     <input
                     type="text"
-                    className="w-[700px] h-[50px] text-center bg-transparent focus:outline-none border-slate-300 placeholder:text-slate-400 hover:border-slate-300 focus:border-slate-400
+                    className="w-[700px] h-[50px] text-center focus:outline-none bg-white border-rose-200 placeholder:text-rose-400 hover:text-rose-800 focus:text-rose-800
                     border-2 p-1 mr-1.5 rounded-md transition duration-300 ease"
                     placeholder="Search" 
                     onChange={onSearchChanged}/>
                     <button
-                    className="absolute top-1 right-3 flex items-center rounded bg-slate-800 py-2.5 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    className="absolute top-2 right-4 flex items-center rounded bg-rose-600 py-1.5   px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-rose-700 focus:shadow-none active:bg-rose-700 hover:bg-rose-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                     type="button"
                     onClick={filterResults}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 mr-2">
@@ -59,12 +59,12 @@ function HomePage() {
                 </div>
             </div>
             <div className="flex items-center justify-center">
-                <button type="button" id="decPage" className={((pageNr == 0) ? "invisible" : "visible")+" flex items-center rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"}
+                <button type="button" id="decPage" className={((pageNr == 0) ? "invisible" : "visible")+" flex items-center rounded bg-rose-600 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-rose-600 focus:shadow-none active:bg-rose-700 hover:bg-rose-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"}
                 onClick={decreasePageNr}>
                     &lt; Prev
                 </button>
                 <label htmlFor="pageNr" id="pageNrLabel" className="mx-3">{pageNr+1}/{(cakeList.numPages == 0) ? 1 : cakeList.numPages}</label>
-                <button type="button" id="incPage" className={(cakeList.lastPage ? "invisible" : "visible")+" top-1 right-1 flex items-center rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"}
+                <button type="button" id="incPage" className={(cakeList.lastPage ? "invisible" : "visible")+" top-1 right-1 flex items-center rounded bg-rose-600 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-rose-600 focus:shadow-none active:bg-rose-700 hover:bg-rose-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"}
                 onClick={increasePageNr}>
                     Next &gt;
                 </button>

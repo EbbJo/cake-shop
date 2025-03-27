@@ -10,13 +10,15 @@ function App() {
 
   return (
     <CakeProvider>
-      <div className='main-content'>
+      <div className='main-content bg-rose-50'>
           <Navbar />
-          <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path={"/product/:id"} element={<ProductPage />} />
-          </Routes>
+          <div className="min-h-screen">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path={"/product/:id"} element={<ProductPage />} />
+            </Routes>
+          </div>
           <Footer />
       </div>
     </CakeProvider>

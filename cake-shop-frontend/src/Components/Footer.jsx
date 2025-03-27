@@ -3,8 +3,8 @@ import { Link } from "react-router";
 function Footer() {
 
     return(
-        <nav>
-            <div className="flex justify-between p-5 bg-yellow-950 text-white font-navbar font-bold">
+        <nav className="h-10">
+            <div className="flex justify-between p-5 bg-rose-800 text-pink-100 font-navbar font-bold">
                 <div>
                     <Link to="/">Cake Shop</Link>
                 </div>
