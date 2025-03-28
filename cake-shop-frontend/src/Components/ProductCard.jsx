@@ -9,7 +9,7 @@ function ProductCard( {product} ) {
             <div className="border border-pink-200 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow bg-white m-5">
                 <div className="relative">
                 <Link to={`/product/${product.id}`}>
-                    <img src={"https://placehold.co/200x150"} alt={name}
+                    <img src={`/Images/Cake-${id}`} alt={name} width={200} height={200}
                         className="w-full h-48 object-cover rounded-md mb-4"
                     />
                 </Link>
