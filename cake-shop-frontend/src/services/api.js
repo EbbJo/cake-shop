@@ -1,4 +1,10 @@
-const BASE_URL = `http://localhost:5050/api`;
+const getBaseURL = function() {
+    if (import.meta.env.MODE === "development") {
+        return `http://localhost:5050/api`;
+    } else {
+        return `http://localhost:8080/api`;
+    }
+}
 
 /**
  * @returns Default value for a product list page with no elements and no pages.
@@ -19,7 +25,7 @@ export const emptyProductQuery = () => {
  */
 export const addCake = async (cake) => {
     try {
-        const response = await fetch(`${BASE_URL}/cakes`, {
+        const response = await fetch(`${getBaseURL()}/cakes`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(cake)
@@ -39,7 +45,7 @@ export const addCake = async (cake) => {
  */
 export const getAllCakes = async () => {
     try {
-        const response = await fetch(`${BASE_URL}/cakes`, {
+        const response = await fetch(`${getBaseURL()}/cakes`, {
             method: 'GET'
         });
 
@@ -54,7 +60,7 @@ export const getAllCakes = async () => {
 
 export const getCakesSearched = async (pageNr, pageAmt, query = "") => {
     try {
-        let str = `${BASE_URL}/cakes/Page-${pageNr}_AmtPerPage-${pageAmt}`;
+        let str = `${getBaseURL()}/cakes/Page-${pageNr}_AmtPerPage-${pageAmt}`;
         if (query.length > 0) {
             str += `?query=${query}`;
         }
@@ -78,7 +84,7 @@ export const getCakesSearched = async (pageNr, pageAmt, query = "") => {
  */
 export const getCakeByID = async (id) => {
     try {
-        const response = await fetch(`${BASE_URL}/cakes/${id}`, {
+        const response = await fetch(`${getBaseURL()}/cakes/${id}`, {
             method: 'GET'
         });
 
@@ -97,7 +103,7 @@ export const getCakeByID = async (id) => {
  */
 export const updateCake = async (cake) => {
     try {
-        const response = await fetch(`${BASE_URL}/cakes/${cake.id}`, {
+        const response = await fetch(`${getBaseURL()}/cakes/${cake.id}`, {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(cake)
@@ -118,7 +124,7 @@ export const updateCake = async (cake) => {
  */
 export const deleteCake = async (id) => {
     try {
-        const response = await fetch(`${BASE_URL}/cakes/${id}`, {
+        const response = await fetch(`${getBaseURL()}/cakes/${id}`, {
             method: 'DELETE'
         });
 

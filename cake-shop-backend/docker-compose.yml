@@ -1,0 +1,26 @@
+﻿services:
+  cake-shop-frontend:
+    image: ebbebrinch/cake-shop-frontend
+    build:
+      context: ../cake-shop-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+  
+  cake-shop-backend:
+    image: cake-shop-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    depends_on:
+      - sqlserver
+  
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Str0ng!Passw0rd
