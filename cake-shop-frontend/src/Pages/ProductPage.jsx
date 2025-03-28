@@ -34,6 +34,8 @@ function ProductPage() {
             {product.name}
             {product.price}
             {product.description}
+
+            <img src={`../../public/Images/Cake-${id}.jpg`} className="min-w-[500px] min-h-[500px] max-w-[500px] max-h-[500px]"></img>
         </div>
     )
 }

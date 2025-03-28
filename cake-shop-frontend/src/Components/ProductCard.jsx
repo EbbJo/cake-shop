@@ -9,8 +9,8 @@ function ProductCard( {product} ) {
             <div className="border border-pink-200 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow bg-white m-5">
                 <div className="relative">
                 <Link to={`/product/${product.id}`}>
-                    <img src={`/Images/Cake-${id}`} alt={name} width={200} height={200}
-                        className="w-full h-48 object-cover rounded-md mb-4"
+                    <img src={`/Images/Cake-${id}.jpg`} alt={name} width={200} height={150}
+                        className="w-full h-48 object-cover rounded-md mb-4 min-w-[200px] min-h-[150px] max-w-[200px] max-h-[150px]"
                     />
                 </Link>
                     <div className="flex justify-between items-center">
