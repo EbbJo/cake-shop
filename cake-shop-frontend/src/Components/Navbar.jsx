@@ -7,7 +7,7 @@ function Navbar() {
             <div className="flex justify-between p-5 bg-pink-200 text-rose-800 font-navbar font-bold">
                 <div className="flex items-center">
                     <div className="ml-4 mb-3">
-                        <Link><img src="PngItem_85478.png" width="40" height="35"/></Link>
+                        <Link><img src="/PngItem_85478.png" width="40" height="35"/></Link>
                     </div>  
                     <div className="ml-5 text-3xl hover:text-rose-950 transition-colors">
                         <Link to="/">Cake Shop</Link>
