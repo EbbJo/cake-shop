@@ -30,13 +30,19 @@ function ProductPage() {
     }
 
     return (
-        <div>
-            {product.name}
-            {product.price}
-            {product.description}
-
-            <img src={`../../public/Images/Cake-${id}.jpg`} className="min-w-[500px] min-h-[500px] max-w-[500px] max-h-[500px]"></img>
+        <div class="flex flex-row mt-10">
+            <div class="flex-1">
+                <img src={`/Images/Cake-${id}.jpg`} className="size-[500px] mx-auto rounded-3xl"></img>
+            </div>
+            <div className="flex-1">
+                {product.name}
+                <br />
+                {product.price}
+                <br />
+                {product.description}                
+            </div>
         </div>
+
     )
 }
 
