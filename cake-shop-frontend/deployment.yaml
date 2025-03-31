@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cake-shop-frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cake-shop-frontend
+  template:
+    metadata:
+      labels:
+        app: cake-shop-frontend
+    spec:
+      containers:
+      - name: cake-shop-frontend
+        image: ebbebrinch/cake-shop-frontend:v1  # This matches the image we just built
+        ports:
+        - containerPort: 3000

@@ -1,0 +1,46 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cake-shop-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cake-shop-backend
+  template:
+    metadata:
+      labels:
+        app: cake-shop-backend
+    spec:
+      containers:
+        - name: cake-shop-backend
+          image: ebbebrinch/cake-shop-backend:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ConnectionStrings__DefaultConnection
+              valueFrom:
+                secretKeyRef:
+                  name: mssql-secret
+                  key: connection-string
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cake-shop-backend
+spec:
+  selector:
+    app: cake-shop-backend
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mssql-secret
+type: Opaque
+stringData:
+  connection-string: "Server=sqlserver;Database=CakeDb;User Id=sa;Password=Str0ng!Passw0rd;MultipleActiveResultSets=true;TrustServerCertificate=True;Encrypt=False"
