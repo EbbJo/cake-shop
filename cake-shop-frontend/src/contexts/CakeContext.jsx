@@ -33,12 +33,17 @@ export const CakeProvider = ({children}) => {
         setCakeList(cakes);
     }
 
+    const clearLocal = async () => {
+        localStorage.clear();
+    }
+
     const value = {
         cakeList,
         cart,
         filterCakes,
         addToCart,
-        removeFromCart
+        removeFromCart,
+        clearLocal
     }
 
     return (
