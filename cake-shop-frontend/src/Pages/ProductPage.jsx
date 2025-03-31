@@ -94,6 +94,7 @@ function ProductPage() {
                             Add to Cart
                         </button>
                     </div>
+                    <div class="mt-4 mb-2 mr-10 h-0.5 border-t-0 bg-rose-200"></div>
                     <div class="text-lg mb-6">
                         {product.description}
                     </div>
