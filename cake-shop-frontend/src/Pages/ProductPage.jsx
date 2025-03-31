@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getCakeByID } from "../services/api.js";
 import { Link } from "react-router";
-
+import { useCakeContext } from "../contexts/CakeContext";
+import { MdAddShoppingCart } from "react-icons/md";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
+import toast from 'react-hot-toast';
 
 function ProductPage() {
 
@@ -31,16 +33,29 @@ function ProductPage() {
         </div>
     }
 
+    const { addToCart } = useCakeContext();
+
+    const addCakeToCart = async (e) => {
+        addToCart(product)
+        toast.success(
+            <span>
+                {product.name} added to cart
+            </span>,
+            {
+                id: 'success'
+            });
+    }
+
     return (
         <div>
             <div class="flex text-rose-700 italic my-2 ml-6">
                 <Link to="/" className="flex justify-center items-center">
-                <div>
-                    <MdNavigateBefore /> 
-                </div>
-                <p className="mb-0.5">
-                    back
-                </p>
+                    <div>
+                        <MdNavigateBefore />
+                    </div>
+                    <p className="mb-0.5">
+                        back
+                    </p>
                 </Link>
             </div>
             <div class="md:flex md:flex-row mt-8">
@@ -53,6 +68,13 @@ function ProductPage() {
                     </div>
                     <div class="text-xl my-2">
                         ${product.price}
+                    </div>
+                    <div>
+                        <button className="px-3 text-lg
+                                                py-1 rounded hover:text-white hover:bg-rose-700 transition-colors"
+                            onClick={addCakeToCart}>
+                            <MdAddShoppingCart />
+                        </button>
                     </div>
                     <div class="text-lg">
                         {product.description}
