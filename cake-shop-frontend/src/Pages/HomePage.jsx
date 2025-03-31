@@ -2,7 +2,7 @@ import ProductCard from "../Components/ProductCard";
 import { useCakeContext } from "../contexts/CakeContext.jsx";
 import { useState, useEffect } from "react";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
-import toast from 'react-hot-toast';
+import { IoIosSearch } from "react-icons/io";
 
 
 function HomePage() {
@@ -46,32 +46,26 @@ function HomePage() {
                 <div className="relative flex justify-center my-10">
                     <input
                     type="text"
-                    className="w-[700px] h-[50px] text-center focus:outline-none bg-white border-rose-200 placeholder:text-rose-400 hover:text-rose-800 focus:text-rose-800
-                    border-2 p-1 mr-1.5 rounded-md transition duration-300 ease"
+                    className="w-[700px] h-[50px] text-center focus:outline-none bg-white border-rose-200 shadow-md hover:shadow-lg
+                    border-2 p-1 mr-1.5 rounded-3xl transition duration-300 ease"
                     placeholder="Search" 
                     onChange={onSearchChanged}
                     onKeyDown={(e) => {if (e.key === "Enter") filterResults();}}
                     />
                     <button
-                    className="absolute top-2 right-4 flex items-center rounded bg-rose-600 py-1.5 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-rose-700 focus:shadow-none active:bg-rose-700 hover:bg-rose-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    className="absolute top-2 right-4 flex items-center py-1.5 px-2.5 text-center text-xl hover:cursor-pointer transition duration-200 hover:scale-105 ease-in-out"
                     type="button"
                     onClick={filterResults}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 mr-2">
-                        <path fillRule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clipRule="evenodd" />
-                    </svg>
-                    Search
+                        <IoIosSearch />
                     </button> 
                 </div>
-            </div>
-            <div className="flex items-center justify-center">
-                <label>Page:</label>
             </div>
             <div className="flex items-center justify-center">
                 <button type="button" id="decPage" className={((pageNr == 0) ? "invisible" : "visible")+" flex items-center rounded bg-rose-600 py-1 px-2.5 border border-transparent text-center text-md text-white transition-all shadow-sm hover:shadow focus:bg-rose-600 focus:shadow-none active:bg-rose-700 hover:bg-rose-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"}
                 onClick={decreasePageNr}>
                     <MdNavigateBefore />
                 </button>
-                <label htmlFor="pageNr" id="pageNrLabel" className="mx-3">{pageNr+1}/{(cakeList.numPages == 0) ? 1 : cakeList.numPages}</label>
+                <label htmlFor="pageNr" id="pageNrLabel" className="mx-3">{pageNr+1} of {(cakeList.numPages == 0) ? 1 : cakeList.numPages}</label>
                 <button type="button" id="incPage" className={(cakeList.lastPage ? "invisible" : "visible")+" top-1 right-1 flex items-center rounded bg-rose-600 py-1 px-2.5 border border-transparent text-center text-md text-white transition-all shadow-sm hover:shadow focus:bg-rose-600 focus:shadow-none active:bg-rose-700 hover:bg-rose-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"}
                 onClick={increasePageNr}>
                     <MdNavigateNext />
