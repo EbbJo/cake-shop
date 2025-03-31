@@ -49,6 +49,7 @@ function ProductCard( {product} ) {
                             type="number" 
                             value={amt} 
                             min={0} 
+                            max={1000}
                             onChange={onAmtChange}
                             className="bg-white w-20 py-1 text-center pl-4 border rounded focus:outline-none focus:border-rose-400"
                         />
