@@ -19,7 +19,6 @@ export const CakeProvider = ({children}) => {
 
     const addToCart = async (cake) => {
         setCart((prev) => [...prev, cake]);
-        console.info("Added To Cart")
     }
 
     const removeFromCart = async (cakeId) => {

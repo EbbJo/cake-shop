@@ -13,7 +13,11 @@ function ProductCard( {product} ) {
     const [amt, setAmt] = useState(1);
 
     const onAmtChange = async (e) => {
-        setAmt(e.target.value);
+        if (e.target.value > 1000) {
+            setAmt(1000)
+        } else {
+            setAmt(e.target.value);
+        }
     }
 
     const addCakeToCart = async (e) => {
