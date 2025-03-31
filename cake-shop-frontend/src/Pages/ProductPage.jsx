@@ -39,7 +39,7 @@ function ProductPage() {
                     {product.name}
                 </div>
                 <div class="text-xl my-2">
-                    {product.price}$
+                    ${product.price}
                 </div>
                 <div class="text-lg">
                     {product.description}  
