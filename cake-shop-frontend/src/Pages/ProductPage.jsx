@@ -30,16 +30,20 @@ function ProductPage() {
     }
 
     return (
-        <div class="flex flex-row mt-10">
+        <div class="md:flex md:flex-row mt-10">
             <div class="flex-1">
-                <img src={`/Images/Cake-${id}.jpg`} className="size-[500px] mx-auto rounded-3xl"></img>
+                <img src={`/Images/Cake-${id}.jpg`} className="size-[500px] mx-auto rounded-lg object-cover border-2 border-rose-200 border-solid shadow-md mb-10"></img>
             </div>
-            <div className="flex-1">
-                {product.name}
-                <br />
-                {product.price}
-                <br />
-                {product.description}                
+            <div className="flex-1 ml-2">
+                <div class="text-rose-800 text-3xl my-3">
+                    {product.name}
+                </div>
+                <div class="text-xl my-2">
+                    {product.price}$
+                </div>
+                <div class="text-lg">
+                    {product.description}  
+                </div>    
             </div>
         </div>
 
