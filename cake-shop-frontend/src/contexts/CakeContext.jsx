@@ -7,7 +7,15 @@ export const useCakeContext = () =>  useContext(CakeContext);
 
 export const CakeProvider = ({children}) => {
     const [cakeList, setCakeList] = useState(emptyProductQuery());
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(() => {
+        //Get the cart from local storage, or an empty array if no cart exists.
+        return JSON.parse(localStorage.getItem('cart')) || [];
+    });
+
+    //Update cart in local storage on update
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
 
     const addToCart = async (cake) => {
         setCart((prev) => [...prev, cake]);
