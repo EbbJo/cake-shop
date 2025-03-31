@@ -2,6 +2,8 @@ import ProductCard from "../Components/ProductCard";
 import { useCakeContext } from "../contexts/CakeContext.jsx";
 import { useState, useEffect } from "react";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
+import toast from 'react-hot-toast';
+
 
 function HomePage() {
     const AMT_PER_PAGE = 10;

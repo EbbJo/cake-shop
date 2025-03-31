@@ -1,9 +1,34 @@
 import { Link } from "react-router"
 import { MdAddShoppingCart } from "react-icons/md";
+import { useCakeContext } from "../contexts/CakeContext";
+import toast from 'react-hot-toast';
+import { useState } from "react";
+
 
 function ProductCard( {product} ) {
 
     const { id, name, price, description, imageUrl } = product;
+    const { addToCart } = useCakeContext();
+
+    const [amt, setAmt] = useState(1);
+
+    const onAmtChange = async (e) => {
+        setAmt(e.target.value);
+    }
+
+    const addCakeToCart = async (e) => {
+        for (let i = 0; i < amt; i++) {
+            addToCart(product)
+        }
+        setAmt(1)
+        toast.success(
+            <span>
+             {product.name} added to cart
+            </span>, 
+            {
+            id: 'success'
+        });
+    }
     
 
     return (
@@ -20,13 +45,16 @@ function ProductCard( {product} ) {
                     </div>
                     <div className="flex justify-between mt-5">
                         <input 
+                            id="inputAmt"
                             type="number" 
-                            defaultValue={1} 
+                            value={amt} 
                             min={0} 
+                            onChange={onAmtChange}
                             className="bg-white w-20 py-1 text-center pl-4 border rounded focus:outline-none focus:border-rose-400"
                         />
                         <button className="px-3 text-lg
-                        py-1 rounded hover:text-white hover:bg-rose-700 transition-colors">
+                        py-1 rounded hover:text-white hover:bg-rose-700 transition-colors"
+                        onClick={addCakeToCart}>
                             <MdAddShoppingCart />
                         </button>
                     </div>

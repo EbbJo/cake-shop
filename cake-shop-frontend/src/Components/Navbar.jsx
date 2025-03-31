@@ -8,11 +8,10 @@ function Navbar() {
 
     function TotalPrice() {
         let total = 0;
-        for (let cake in cart) {
-            total += cake.Price;
+        for (let cake of cart) {
+            total += cake.price;
         }
-
-        return total;
+        return Math.round(total * 100) / 100;
     }
 
     return(

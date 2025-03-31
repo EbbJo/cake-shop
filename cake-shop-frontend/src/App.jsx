@@ -5,12 +5,14 @@ import AboutPage from "./Pages/AboutPage";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import { CakeProvider } from "./contexts/CakeContext";
+import { Toaster } from 'react-hot-toast';
 
 function App() {
 
   return (
     <CakeProvider>
       <div className='main-content bg-rose-50'>
+          <Toaster />
           <Navbar />
           <div className="min-h-screen">
               <Routes>
