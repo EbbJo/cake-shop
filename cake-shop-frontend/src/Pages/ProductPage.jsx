@@ -8,6 +8,7 @@ import { MdAddShoppingCart } from "react-icons/md";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import toast from 'react-hot-toast';
 
+
 function ProductPage() {
 
     const { id } = useParams();
@@ -27,23 +28,33 @@ function ProductPage() {
         fetchProduct();
     }, [id])
 
+    const { addToCart } = useCakeContext();
+
+    const [amt, setAmt] = useState(1);
+
     if (product == null) {
         return <div>
             Product does not exist!
         </div>
     }
 
-    const { addToCart } = useCakeContext();
+
+    const onAmtChange = async (e) => {
+        setAmt(e.target.value);
+    }
 
     const addCakeToCart = async (e) => {
-        addToCart(product)
+        for (let i = 0; i < amt; i++) {
+            addToCart(product)
+        }
+        setAmt(1)
         toast.success(
             <span>
-                {product.name} added to cart
-            </span>,
+             {product.name} added to cart
+            </span>, 
             {
-                id: 'success'
-            });
+            id: 'success'
+        });
     }
 
     return (
@@ -70,10 +81,17 @@ function ProductPage() {
                         ${product.price}
                     </div>
                     <div>
-                        <button className="px-3 text-lg
-                                                py-1 rounded hover:text-white hover:bg-rose-700 transition-colors"
+                        <input
+                            id="inputAmt"
+                            type="number"
+                            value={amt}
+                            min={0}
+                            onChange={onAmtChange}
+                            className="bg-white w-20 py-1 text-center pl-4 border rounded focus:outline-none focus:border-rose-400"
+                        />
+                        <button className="px-3 text-lg mx-2 py-1 rounded hover:text-white hover:bg-rose-700 bg-rose-200 transition-colors"
                             onClick={addCakeToCart}>
-                            <MdAddShoppingCart />
+                            Add to Cart
                         </button>
                     </div>
                     <div class="text-lg">
