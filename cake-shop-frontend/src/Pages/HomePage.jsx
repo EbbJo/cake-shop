@@ -1,6 +1,7 @@
 import ProductCard from "../Components/ProductCard";
 import { useCakeContext } from "../contexts/CakeContext.jsx";
 import { useState, useEffect } from "react";
+import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 
 function HomePage() {
     const AMT_PER_PAGE = 10;
@@ -46,7 +47,9 @@ function HomePage() {
                     className="w-[700px] h-[50px] text-center focus:outline-none bg-white border-rose-200 placeholder:text-rose-400 hover:text-rose-800 focus:text-rose-800
                     border-2 p-1 mr-1.5 rounded-md transition duration-300 ease"
                     placeholder="Search" 
-                    onChange={onSearchChanged}/>
+                    onChange={onSearchChanged}
+                    onKeyDown={(e) => {if (e.key === "Enter") filterResults();}}
+                    />
                     <button
                     className="absolute top-2 right-4 flex items-center rounded bg-rose-600 py-1.5 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-rose-700 focus:shadow-none active:bg-rose-700 hover:bg-rose-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                     type="button"
@@ -62,14 +65,14 @@ function HomePage() {
                 <label>Page:</label>
             </div>
             <div className="flex items-center justify-center">
-                <button type="button" id="decPage" className={((pageNr == 0) ? "invisible" : "visible")+" flex items-center rounded bg-rose-600 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-rose-600 focus:shadow-none active:bg-rose-700 hover:bg-rose-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"}
+                <button type="button" id="decPage" className={((pageNr == 0) ? "invisible" : "visible")+" flex items-center rounded bg-rose-600 py-1 px-2.5 border border-transparent text-center text-md text-white transition-all shadow-sm hover:shadow focus:bg-rose-600 focus:shadow-none active:bg-rose-700 hover:bg-rose-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"}
                 onClick={decreasePageNr}>
-                    &lt; Prev
+                    <MdNavigateBefore />
                 </button>
                 <label htmlFor="pageNr" id="pageNrLabel" className="mx-3">{pageNr+1}/{(cakeList.numPages == 0) ? 1 : cakeList.numPages}</label>
-                <button type="button" id="incPage" className={(cakeList.lastPage ? "invisible" : "visible")+" top-1 right-1 flex items-center rounded bg-rose-600 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-rose-600 focus:shadow-none active:bg-rose-700 hover:bg-rose-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"}
+                <button type="button" id="incPage" className={(cakeList.lastPage ? "invisible" : "visible")+" top-1 right-1 flex items-center rounded bg-rose-600 py-1 px-2.5 border border-transparent text-center text-md text-white transition-all shadow-sm hover:shadow focus:bg-rose-600 focus:shadow-none active:bg-rose-700 hover:bg-rose-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"}
                 onClick={increasePageNr}>
-                    Next &gt;
+                    <MdNavigateNext />
                 </button>
             </div>
             <div>

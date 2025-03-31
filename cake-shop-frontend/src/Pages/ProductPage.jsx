@@ -1,9 +1,10 @@
 //Page for a specific Product. Not for all products.
-
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getCakeByID } from "../services/api.js";
 import { Link } from "react-router";
+
+import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 
 function ProductPage() {
 
@@ -32,10 +33,15 @@ function ProductPage() {
 
     return (
         <div>
-            <div class="text-rose-700 italic my-2 ml-6">
-                
-                <Link to="/">&lt; back</Link>
-                
+            <div class="flex text-rose-700 italic my-2 ml-6">
+                <Link to="/" className="flex justify-center items-center">
+                <div>
+                    <MdNavigateBefore /> 
+                </div>
+                <p className="mb-0.5">
+                    back
+                </p>
+                </Link>
             </div>
             <div class="md:flex md:flex-row mt-8">
                 <div class="flex-1">

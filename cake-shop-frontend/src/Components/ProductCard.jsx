@@ -1,4 +1,5 @@
 import { Link } from "react-router"
+import { MdAddShoppingCart } from "react-icons/md";
 
 function ProductCard( {product} ) {
 
@@ -24,9 +25,9 @@ function ProductCard( {product} ) {
                             min={0} 
                             className="bg-white w-20 py-1 text-center pl-4 border rounded focus:outline-none focus:border-rose-400"
                         />
-                        <button className="bg-rose-600 text-white px-3
-                        py-1 rounded hover:bg-rose-700 transition-colors">
-                            Add to Cart
+                        <button className="px-3 text-lg
+                        py-1 rounded hover:text-white hover:bg-rose-700 transition-colors">
+                            <MdAddShoppingCart />
                         </button>
                     </div>
                 </div>
