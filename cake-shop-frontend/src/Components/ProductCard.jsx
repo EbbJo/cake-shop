@@ -53,7 +53,7 @@ function ProductCard( {product} ) {
                             className="bg-white w-20 py-1 text-center pl-4 border rounded focus:outline-none focus:border-rose-400"
                         />
                         <button className="px-3 text-lg
-                        py-1 rounded hover:text-white hover:bg-rose-700 transition-colors"
+                        py-1 rounded hover:text-white hover:bg-rose-700 bg-rose-200 transition-colors"
                         onClick={addCakeToCart}>
                             <MdAddShoppingCart />
                         </button>
