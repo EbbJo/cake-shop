@@ -73,7 +73,7 @@ function OrderSummary() {
                     <div className="text-rose-700">
                         City
                     </div>
-                    <input className="border rounded-[4px] border-[color:hsl(0,0%,80%)] h-[38px] w-[350px] hover:border-[#2684FF] hover:shadow-[1px]" onChange={changeHandlerCities}/>
+                    <input className="border-[1px] rounded-[4px] border-[color:hsl(0,0%,80%)] transition-all duration-100 border-solid h-[38px] w-[350px] focus:outline-none focus:ring-1 focus:ring-[#2684FF]" onChange={changeHandlerCities}/>
                 </div>
                 <div>
                     <div className="text-rose-700">
