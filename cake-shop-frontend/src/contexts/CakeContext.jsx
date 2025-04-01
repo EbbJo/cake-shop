@@ -36,12 +36,21 @@ export const CakeProvider = ({children}) => {
         localStorage.clear();
     }
 
+    function TotalPrice() {
+        let total = 0;
+        for (let cake of cart) {
+            total += cake.price;
+        }
+        return Math.round(total * 100) / 100;
+    }
+
     const value = {
         cakeList,
         cart,
         filterCakes,
         addToCart,
         removeFromCart,
+        TotalPrice,
         clearLocal
     }
 

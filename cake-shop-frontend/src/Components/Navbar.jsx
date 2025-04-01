@@ -4,15 +4,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 
 function Navbar() {
 
-    const { cart } = useCakeContext();
-
-    function TotalPrice() {
-        let total = 0;
-        for (let cake of cart) {
-            total += cake.price;
-        }
-        return Math.round(total * 100) / 100;
-    }
+    const { cart, TotalPrice } = useCakeContext();
 
     return(
         <nav>
