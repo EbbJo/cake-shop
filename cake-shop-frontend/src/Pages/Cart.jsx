@@ -1,5 +1,6 @@
 import { useCakeContext } from "../contexts/CakeContext"
 import OrderSummary from "../Components/OrderSummary"
+import CartOverview from "../Components/CartOverview"
 
 function Cart() {
 
@@ -11,6 +12,7 @@ function Cart() {
                 <a href="">Click here to clear local storage</a>
             </button>
             <OrderSummary />
+            <CartOverview />
         </div>
     )
 }
