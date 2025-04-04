@@ -11,8 +11,8 @@ using cake_shop_backend.Data;
 namespace cake_shop_backend.Migrations
 {
     [DbContext(typeof(CakeDbContext))]
-    [Migration("20250401115936_Initial")]
-    partial class Initial
+    [Migration("20250404074935_inital")]
+    partial class inital
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -4,16 +4,18 @@ import CartOverview from "../Components/CartOverview"
 
 function Cart() {
 
-    const {clearLocal} = useCakeContext();
+    const { clearLocal } = useCakeContext();
 
-    return(
-        <div className="flex justify-between">
+    return (
+        <>
+            <div className="flex justify-between">
+                <CartOverview />
+                <OrderSummary />
+            </div>
             <button onClick={clearLocal}>
                 <a href="">Click here to clear local storage</a>
             </button>
-            <OrderSummary />
-            <CartOverview />
-        </div>
+        </>
     )
 }
 

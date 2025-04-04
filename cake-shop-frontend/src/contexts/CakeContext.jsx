@@ -3,9 +3,9 @@ import { emptyProductQuery, getAllCakes, getCakesSearched, getCakeByID, addCake,
 
 const CakeContext = createContext();
 
-export const useCakeContext = () =>  useContext(CakeContext);
+export const useCakeContext = () => useContext(CakeContext);
 
-export const CakeProvider = ({children}) => {
+export const CakeProvider = ({ children }) => {
     const [cakeList, setCakeList] = useState(emptyProductQuery());
     const [cart, setCart] = useState(() => {
         //Get the cart from local storage, or an empty array if no cart exists.
