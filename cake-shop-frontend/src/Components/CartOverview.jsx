@@ -4,7 +4,6 @@ import ProductSummaryCard from "./ProductSummaryCard";
 function CartOverview() {
 
 	const { cart } = useCakeContext();
-	const { cart } = useCakeContext();
 
 	return (
 		<div className="ml-4 mt-3 bg-white h-[600px] w-[1070px] overflow-auto">
