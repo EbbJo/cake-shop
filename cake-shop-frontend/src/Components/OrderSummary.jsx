@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useCakeContext } from "../contexts/CakeContext";
 import Select from "react-select";
-import countryList from "react-select-country-list";
 import { addOrder } from "../services/api";
 import { useNavigate } from 'react-router-dom';
 
@@ -21,8 +20,8 @@ function OrderSummary() {
         { value: 'sjælland', label: 'Sjælland' },
         { value: 'fyn', label: 'Fyn' },
     ]
-    const [selectedCountry, setSelectedCountry] = useState({value:'', label:''})
-    const [selectedProvince, setselectedProvince] = useState({value:'', label:''})
+    const [selectedCountry, setSelectedCountry] = useState({ value: '', label: '' })
+    const [selectedProvince, setselectedProvince] = useState({ value: '', label: '' })
     const [enteredCity, setenteredCity] = useState('')
     const [enteredPostalCode, setenteredPostalCode] = useState('')
 
@@ -138,7 +137,7 @@ function OrderSummary() {
                     </div>
                 </div>
             </div>
-            
+
             <button onClick={processOrder} className="mt-6 bg-rose-600 hover:bg-rose-700 text-white py-2 rounded transition-colors">
                 Proceed to Checkout
             </button>
