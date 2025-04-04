@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { useCakeContext } from "../contexts/CakeContext";
 import Select from "react-select";
+import countryList from "react-select-country-list";
+import { addOrder } from "../services/api";
+import { useNavigate } from 'react-router-dom';
 
 function OrderSummary() {
 
     const { cart, TotalPrice } = useCakeContext();
+    const navigate = useNavigate();
+
     const shippingPrice = 2.99;
     const countries = [
         { value: "denmark", label: "Denmark" }
@@ -16,8 +21,8 @@ function OrderSummary() {
         { value: 'sjælland', label: 'Sjælland' },
         { value: 'fyn', label: 'Fyn' },
     ]
-    const [selectedCountry, setSelectedCountry] = useState('')
-    const [selectedProvince, setselectedProvince] = useState('')
+    const [selectedCountry, setSelectedCountry] = useState({value:'', label:''})
+    const [selectedProvince, setselectedProvince] = useState({value:'', label:''})
     const [enteredCity, setenteredCity] = useState('')
     const [enteredPostalCode, setenteredPostalCode] = useState('')
 
@@ -28,11 +33,53 @@ function OrderSummary() {
     const changeHandlerProvinces = value => {
         setselectedProvince(value)
     }
-    const changeHandlerCities = value => {
-        setenteredCity(value)
+    const changeHandlerCities = (e) => {
+        setenteredCity(e.target.value)
     }
-    const changeHandlerPostalCodes = value => {
-        setenteredPostalCode(value)
+    const changeHandlerPostalCodes = (e) => {
+        setenteredPostalCode(e.target.value)
+    }
+
+    const processOrder = async () => {
+        console.log(selectedCountry);
+
+        let order = {
+            products: [],
+            country: selectedCountry.value,
+            province: selectedProvince.value,
+            city: enteredCity,
+            postalCode: enteredPostalCode,
+            shippingCost: shippingPrice
+        };
+
+        //Cake id's already considered
+        let seenCakes = [];
+
+        for (var cake of cart) {
+            //If seen cake, skip
+            if (seenCakes.indexOf(cake.id) != -1) {
+                continue;
+            }
+            seenCakes.push(cake.id);
+
+            console.log(cake);
+
+            order.products.push({
+                cakeId: cake.id,
+                quantity: cart.filter(c => c.id === cake.id).length
+            });
+        }
+
+        console.log(cart);
+        console.log(order);
+
+        let response = await addOrder(order);
+
+        if (response === null) {
+            navigate('/result/:false');
+        } else {
+            navigate('/result/:true');
+        }
     }
 
     return (
@@ -91,8 +138,8 @@ function OrderSummary() {
                     </div>
                 </div>
             </div>
-
-            <button className="mt-6 bg-rose-600 hover:bg-rose-700 text-white py-2 rounded transition-colors">
+            
+            <button onClick={processOrder} className="mt-6 bg-rose-600 hover:bg-rose-700 text-white py-2 rounded transition-colors">
                 Proceed to Checkout
             </button>
         </div>

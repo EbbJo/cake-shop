@@ -30,6 +30,7 @@ public static class Endpoints {
         orderEndPoints.MapGet("/", GetOrders).WithSummary("Gets all orders.");
         
         orderEndPoints.MapGet("/{id}", GetOrderById).WithSummary("Gets an order by id.");
+        
         orderEndPoints.MapGet("/{id}/Price", GetOrderPrice)
             .WithSummary("Get the total price of all cakes in an order.");
         
@@ -161,14 +162,14 @@ public static class Endpoints {
             return TypedResults.NotFound();
         }
 
-        decimal totalPrice = 0;
+        decimal totalPrice = await order.TotalCost(db);
 
-        foreach (var cakeOrder in order.Products) {
-            var cake = await db.Cakes.FindAsync(cakeOrder.CakeId);
-            if (cake is null) { continue; }
-            
-            totalPrice += cake.Price * cakeOrder.Quantity;
-        }
+        //foreach (var cakeOrder in order.Products) {
+        //    var cake = await db.Cakes.FindAsync(cakeOrder.CakeId);
+        //    if (cake is null) { continue; }
+        //    
+        //    totalPrice += cake.Price * cakeOrder.Quantity;
+        //}
         
         return TypedResults.Ok(totalPrice);
     }

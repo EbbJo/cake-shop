@@ -58,6 +58,12 @@ export const getAllCakes = async () => {
     }
 }
 
+/**
+ * Get a page query of the cake list.
+ * @param {number} pageNr The current page.
+ * @param {number} pageAmt The amount of items to be shown per page.
+ * @param {string} query Optional search term to filter items with.
+ */
 export const getCakesSearched = async (pageNr, pageAmt, query = "") => {
     try {
         let str = `${getBaseURL()}/cakes/Page-${pageNr}_AmtPerPage-${pageAmt}`;
@@ -133,6 +139,27 @@ export const deleteCake = async (id) => {
         return await response.json();
     } catch (e) {
         console.error("Error deleting cake: "+e);
+        return null;
+    }
+}
+
+/**
+ * Add a cake.
+ * @param {object} cake
+ */
+export const addOrder = async (order) => {
+    try {
+        const response = await fetch(`${getBaseURL()}/orders`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(order)
+        });
+
+        if (!response.ok) throw new Error(response.status);
+
+        return await response.json();
+    } catch (e) {
+        console.error("Error creating order: "+e);
         return null;
     }
 }
