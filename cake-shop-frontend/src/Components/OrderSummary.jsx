@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useCakeContext } from "../contexts/CakeContext";
 import Select from "react-select";
 import countryList from "react-select-country-list";
@@ -11,8 +11,9 @@ function OrderSummary() {
     const navigate = useNavigate();
 
     const shippingPrice = 2.99;
-
-    const countires = useMemo(() => countryList().getData(), [])
+    const countries = [
+        { value: "denmark", label: "Denmark" }
+    ]
     const provinces = [
         { value: 'midtjylland', label: 'Midtjylland' },
         { value: 'nordjylland', label: 'Nordjylland' },
@@ -26,7 +27,7 @@ function OrderSummary() {
     const [enteredPostalCode, setenteredPostalCode] = useState('')
 
 
-    const changeHandlerCountires = value => {
+    const changeHandlerCountries = value => {
         setSelectedCountry(value)
     }
     const changeHandlerProvinces = value => {
@@ -82,12 +83,12 @@ function OrderSummary() {
     }
 
     return (
-         <div className="flex flex-col justify-between border border-pink-200 rounded-md w-[400px] p-6 m-5 shadow-md hover:shadow-lg transition-all bg-white">
+        <div className="flex flex-col justify-between border border-pink-200 rounded-md w-[400px] p-6 mr-4 mt-3 shadow-md hover:shadow-lg transition-all bg-white">
             <div className="text-xl font-bold text-rose-800 mb-4 border-b border-pink-100 pb-2">
                 Order Summary
             </div>
             <div className="space-y-4">
-                <div className="flex justify-between">   
+                <div className="flex justify-between">
                     <div className="text-rose-800">
                         Subtotal:
                     </div>
@@ -95,8 +96,8 @@ function OrderSummary() {
                         ${TotalPrice()}
                     </div>
                 </div>
-                
-                <div className="flex justify-between">   
+
+                <div className="flex justify-between">
                     <div className="text-rose-800">
                         Shipping:
                     </div>
@@ -108,32 +109,32 @@ function OrderSummary() {
                     <div className="text-rose-700">
                         Country
                     </div>
-                    <Select placeholder={"Select a Country"} options={countires} value={selectedCountry} onChange={changeHandlerCountires}/>
+                    <Select placeholder={"Select a Country"} options={countries} value={selectedCountry} onChange={changeHandlerCountries} />
                 </div>
                 <div>
                     <div className="text-rose-700">
                         Province
                     </div>
-                    <Select placeholder={"Select a Country"} options={provinces} value={selectedProvince} onChange={changeHandlerProvinces}/>
+                    <Select placeholder={"Select a Country"} options={provinces} value={selectedProvince} onChange={changeHandlerProvinces} />
                 </div>
                 <div>
                     <div className="text-rose-700">
                         City
                     </div>
-                    <input className="border-[1px] rounded-[4px] border-[color:hsl(0,0%,80%)] transition-all duration-100 border-solid h-[38px] w-[350px] focus:outline-none focus:ring-1 focus:ring-[#2684FF]" onChange={changeHandlerCities}/>
+                    <input placeholder="Enter a City" className="p-2.5 border-[1px] rounded-[4px] border-[color:hsl(0,0%,80%)] transition-all duration-100 border-solid h-[38px] w-[350px] focus:outline-none focus:border-[#2684FF] focus:ring-1 focus:ring-[#2684FF]" onChange={changeHandlerCities} />
                 </div>
                 <div>
                     <div className="text-rose-700">
                         Postal code
                     </div>
-                    <input onChange={changeHandlerPostalCodes}/>
+                    <input placeholder="Enter a Postal code" className="p-2.5 border-[1px] rounded-[4px] border-[color:hsl(0,0%,80%)] transition-all duration-100 border-solid h-[38px] w-[350px] focus:outline-none focus:border-[#2684FF] focus:ring-1 focus:ring-[#2684FF]" onChange={changeHandlerPostalCodes} />
                 </div>
-                <div className="flex justify-between border-t border-pink-100 pt-2 mt-2">   
+                <div className="flex justify-between border-t border-pink-100 pt-2 mt-2">
                     <div className="text-rose-800 font-bold">
                         Total:
                     </div>
                     <div className="font-bold text-rose-900">
-                        ${TotalPrice() + shippingPrice}
+                        ${((TotalPrice() + shippingPrice) * 100) / 100}
                     </div>
                 </div>
             </div>
