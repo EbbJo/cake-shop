@@ -3,6 +3,7 @@ import HomePage from "./Pages/HomePage";
 import ProductPage from "./Pages/ProductPage";
 import AboutPage from "./Pages/AboutPage";
 import Cart from "./Pages/Cart";
+import ResultPage from "./Pages/ResultPage";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import { CakeProvider } from "./contexts/CakeContext";
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/about" element={<AboutPage />} />
                 <Route path={"/product/:id"} element={<ProductPage />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/result/:success" element={<ResultPage />} />
               </Routes>
           </div>
           <Footer />
