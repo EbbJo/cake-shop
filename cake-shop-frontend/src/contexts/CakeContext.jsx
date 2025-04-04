@@ -11,19 +11,28 @@ export const CakeProvider = ({ children }) => {
         //Get the cart from local storage, or an empty array if no cart exists.
         return JSON.parse(localStorage.getItem('cart')) || [];
     });
+    const [groupedCart, setGroupedCart] = useState(() => {
+        return JSON.parse(localStorage.getItem('groupedCart')) || [];
+    })
 
     //Update cart in local storage on update
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem('groupedCart', JSON.stringify(groupCart(cart)))
     }, [cart]);
 
     const addToCart = async (cake) => {
-        setCart((prev) => [...prev, cake]);
+        const updatedCart = [...cart, cake];
+
+        setCart(updatedCart);
+        setGroupedCart(groupCart(updatedCart));
     }
 
     const removeFromCart = async (cakeId) => {
-        setCart((prev) => prev.filter((cake) => cake.id !== cakeId))
-        console.info("Removed From Cart")
+        const updatedCart = cart.filter((cake) => cake.id !== cakeId)
+
+        setCart(updatedCart)
+        setGroupedCart(groupCart(updatedCart))
     }
 
     const filterCakes = async (pageNr, pageAmt, query = "") => {
@@ -44,14 +53,58 @@ export const CakeProvider = ({ children }) => {
         return Math.round(total * 100) / 100;
     }
 
+    function groupCart(cartToGroup) {
+        const groupedCart = cartToGroup.reduce((acc, product) => {
+            const id = product.id;
+
+            // If this product ID doesn't exist in the accumulator yet, create it
+            if (!acc[id]) {
+                acc[id] = {
+                    product: product,
+                    count: 0
+                };
+            }
+
+            // Increment the count for this product ID
+            acc[id].count += 1;
+
+            return acc;
+        }, {});
+
+        // Convert the grouped object to an array
+        const groupedCartItems = Object.values(groupedCart);
+
+        return groupedCartItems;
+    }
+
+    function SubtractFromGroup(cake) {
+        // Find the item in the cart
+        const itemIndex = cart.findIndex(item => item.id === cake.id);
+
+        if (itemIndex !== -1) {
+            // Create a copy of the cart
+            const updatedCart = [...cart];
+
+            // Remove one occurrence of the item
+            updatedCart.splice(itemIndex, 1);
+
+            // Update the cart state
+            setCart(updatedCart);
+            setGroupedCart(groupCart(updatedCart));
+            // groupedCart will be updated automatically via the useEffect
+        }
+    }
+
     const value = {
         cakeList,
         cart,
+        groupedCart,
         filterCakes,
         addToCart,
         removeFromCart,
         TotalPrice,
-        clearLocal
+        clearLocal,
+        SubtractFromGroup
     }
 
     return (

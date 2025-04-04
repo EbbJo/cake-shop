@@ -1,9 +1,16 @@
+import { useEffect, useState } from "react";
 import { useCakeContext } from "../contexts/CakeContext"
 import ProductSummaryCard from "./ProductSummaryCard";
+import { CgLayoutGrid } from "react-icons/cg";
 
 function CartOverview() {
 
-	const { cart } = useCakeContext();
+	const { groupedCart } = useCakeContext();
+	const [cartItems, setCartItems] = useState([]);
+
+	useEffect(() => {
+		setCartItems(groupedCart)
+	}, [groupedCart])
 
 	return (
 		<div className="ml-4 mt-3 bg-white h-[600px] w-[1070px] overflow-auto">
@@ -17,9 +24,21 @@ function CartOverview() {
 					</tr>
 				</thead>
 				<tbody className="">
-					{cart.map(cartItem => (
-						<ProductSummaryCard product={cartItem} />
-					))}
+					{groupedCart.length > 0 ? (
+						groupedCart.map(({ product, count }) => (
+							<ProductSummaryCard
+								key={product.id}
+								product={product}
+								amt={count}
+							/>
+						))
+					) : (
+						<tr>
+							<td colSpan="5" className="text-center py-8 text-rose-800">
+								Your cart is empty
+							</td>
+						</tr>
+					)}
 				</tbody>
 			</table>
 		</div>

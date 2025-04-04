@@ -23,7 +23,7 @@ spec:
             - name: MSSQL_SA_PASSWORD
               value: "YourStrong@Passw0rd"
           volumeMounts:
-            - name: mssql-data
+            - name: mssql-data  
               mountPath: /var/opt/mssql
       volumes:
         - name: mssql-data
