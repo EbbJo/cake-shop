@@ -6,7 +6,7 @@ function OrderSummary() {
 
     const { cart, TotalPrice } = useCakeContext();
     const shippingPrice = 2.99;
-    const countires = [
+    const countries = [
         { value: "denmark", label: "Denmark" }
     ]
     const provinces = [
@@ -62,7 +62,7 @@ function OrderSummary() {
                     <div className="text-rose-700">
                         Country
                     </div>
-                    <Select placeholder={"Select a Country"} options={countires} value={selectedCountry} onChange={changeHandlerCountries} />
+                    <Select placeholder={"Select a Country"} options={countries} value={selectedCountry} onChange={changeHandlerCountries} />
                 </div>
                 <div>
                     <div className="text-rose-700">
