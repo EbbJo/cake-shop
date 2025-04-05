@@ -44,14 +44,14 @@ function ProductSummaryCard({ product, amt }) {
                 </div>
             </td>
             <td className="w-[150px] text-rose-900">
-                <div className="flex justify-center">
-                    <button className="p-1 text-md">
+                <div className="flex justify-around">
+                    <button className="p-1 ml-10 text-md">
                         <FaMinus />
                     </button>
                     <div className="font-bold">
                         {amt}
                     </div>
-                    <button className="p-1 text-md">
+                    <button className="p-1 mr-10 text-md">
                         <FaPlus />
                     </button>
                 </div>
